@@ -1,0 +1,86 @@
+/* ======================================================
+ * Cinnamon Panels
+ * ====================================================== */
+
+/**
+ * Remove the panels borders
+ */
+
+.panel {
+  &-top, &-bottom, &-left, &-right {
+    box-shadow: none;
+  }
+}
+
+/*
+ * Don't use bold fonts in panels
+ */
+
+#panel {
+  font-weight: normal;
+}
+
+.panel {
+  &-status-button {
+    font-weight: normal;
+  }
+
+  &-button {
+    font-weight: normal;
+  }
+}
+
+.overview-empty-placeholder {
+  font-weight: normal;
+}
+
+.window-list {
+  &-item-box {
+    font-weight: normal;
+  }
+}
+
+.applet {
+  &-label {
+    font-weight: normal;
+  }
+}
+
+.user-label {
+  font-weight: normal;
+}
+
+/*
+ * Reduce spacing between window-list items and remove the left padding.
+ */
+
+.panel {
+  &Left, &Center, &Right {
+    spacing: 0;
+  }
+}
+
+.window-list {
+  &-box {
+    spacing: 1px;
+    padding-left: 0;
+
+    &.vertical {
+      spacing: 1px;
+      padding: 0;
+    }
+  }
+}
+
+/* ======================================================
+ * Cinnamenu
+ * ====================================================== */
+
+/*
+ * Add padding around cinnamenu button (to look like window list buttons)
+ */
+
+.cinnamenu-json-applet {
+  padding-left: 8px;
+  padding-right: 8px;
+}

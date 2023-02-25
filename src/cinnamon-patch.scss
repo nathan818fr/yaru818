@@ -85,6 +85,49 @@
   font-size: 1em;
 }
 
+/*
+ * Prettier workspace switcher
+ */
+
+$workspace_btn_size: 10px;
+$workspace_btn_border_size: 1px;
+
+.workspace-switcher {
+  padding: 0;
+}
+
+.workspace-button {
+  &, &.vertical {
+    &, &:outlined {
+      &, &:hover {
+        border: none;
+        background-color: transparent;
+        color: transparent;
+        width: #{$workspace_btn_size + 2*$workspace_btn_border_size};
+        height: #{$workspace_btn_size + 2*$workspace_btn_border_size};
+        margin: 0;
+        padding: 3px;
+      }
+    }
+  }
+
+  > * {
+    font-size: 1px;
+    width: $workspace_btn_size;
+    height: $workspace_btn_size;
+    border-radius: 9999px;
+    border: $workspace_btn_border_size solid $selected_fg_color;
+  }
+
+  &:outlined > *, &:outlined:hover > * {
+    background-color: $selected_fg_color;
+  }
+
+  &:hover, &:outlined:hover {
+    background-color: $noaccent_dark_bg_color;
+  }
+}
+
 /* ======================================================
  * Cinnamenu
  * ====================================================== */

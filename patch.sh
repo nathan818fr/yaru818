@@ -15,6 +15,13 @@ function main() {
   sed -i -- "s/^\$accent_bg_color:.*/\$accent_bg_color: ${accent_color};/" \
     "${local_dir}/cinnamon-shell/src/default/_palette.scss" \
     "${local_dir}/cinnamon-shell/src/dark/_palette.scss"
+  find "${local_dir}/cinnamon-shell/src" -name '*.svg' -exec sed -i '
+    s/#eb6637/#0069D1/g;
+    s/#e95420/#0069D1/g;
+    s/#f3aa90/#6EB2F7/g;
+    s/#d14515/#0057AD/g;
+    s/#e84d17/#0061C2/g;
+    ' {} \;
 
   # - gtk
   cp -- "${src_dir}/accent-colors.scss.in" "${local_dir}/common/accent-colors.scss.in"

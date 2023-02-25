@@ -2,42 +2,59 @@
 
 My personal fork of the yaru theme (for cinnamon and gtk).
 
-## Install
+## Installation
 
-It is recommended to install
-the [humanity-icon-theme](http://archive.ubuntu.com/ubuntu/pool/main/h/humanity-icon-theme/humanity-icon-theme_0.6.16_all.deb)
-first.
+### Prerequisites
 
-Then download the theme .deb package
-from [releases](https://github.com/nathan818fr/yaru818/releases) and install-it.
+It is recommended to install the [humanity-icon-theme] first, as our icon pack
+depends on it.
 
-### Set light or dark variant
-
-Light:
 ```sh
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+sudo apt install ./humanity-icon-theme_VERSION.deb
 ```
 
-Dark:
+### Distribution packages
+
+- **Debian package (.deb)**\
+  Download the debian package from [releases] and install-it.
+  ```sh
+  sudo apt install ./Yaru818_VERSION.deb
+  ```
+
+### Flatpak
+
+Download the flatpak bundle from [releases] and install-it.
+
 ```sh
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+sudo flatpak install org.gtk.Gtk3theme.Yaru818_VERSION.flatpak
 ```
 
-### Use the theme with flatpak
+It is also recommended to allow flatpak to access your gtk configurations (it
+will better follow your settings):
 
-To be used with flatpak apps, the theme need to be copied to ~/.local/share
-(see https://github.com/flatpak/flatpak/issues/4896
-and https://github.com/flatpak/flatpak/issues/5040).
+```sh
+flatpak override -u --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
+```
 
-```
-flatpak override -u --filesystem=xdg-data/themes:ro --filesystem=xdg-data/icons:ro --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
-mkdir -p ~/.local/share/themes
-rsync -a --del /usr/share/themes/Yaru818/ ~/.local/share/themes/Yaru818
-rsync -a --del /usr/share/themes/Yaru818-dark/ ~/.local/share/themes/Yaru818-dark
-mkdir -p ~/.local/share/icons
-rsync -a --del /usr/share/icons/Yaru818/ ~/.local/share/icons/Yaru818
-rsync -a --del /usr/share/icons/Yaru818-dark/ ~/.local/share/icons/Yaru818-dark
-```
+## Configuration
+
+1. Select `Yaru818-dark` in the theme settings of your desktop-manager.\
+   To apply it automatically to Cinnamon, run:
+   ```sh
+   gsettings set org.cinnamon.desktop.interface gtk-theme Yaru818-dark
+   gsettings set org.cinnamon.desktop.interface icon-theme Yaru818-dark
+   gsettings set org.cinnamon.theme name Yaru818-dark
+   ```
+
+2. Enable the dark variant by default in GTK applications:\
+   *(otherwise some applications will use the light variant)*
+   ```
+   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+   ```
+
+### Cinnamon configuration
+
+TODO
 
 ## Build
 
@@ -56,4 +73,9 @@ rsync -a --del /usr/share/icons/Yaru818-dark/ ~/.local/share/icons/Yaru818-dark
 
 # 5. Optional: Create packages
 ./package_deb.sh
+./package_flatpak.sh
 ```
+
+[releases]: https://github.com/nathan818fr/yaru818/releases
+
+[humanity-icon-theme]: http://archive.ubuntu.com/ubuntu/pool/main/h/humanity-icon-theme/humanity-icon-theme_0.6.16_all.deb

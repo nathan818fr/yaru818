@@ -11,6 +11,18 @@ first.
 Then download the theme .deb package
 from [releases](https://github.com/nathan818fr/yaru818/releases) and install-it.
 
+### Set light or dark variant
+
+Light:
+```sh
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+```
+
+Dark:
+```sh
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+```
+
 ### Use the theme with flatpak
 
 To be used with flatpak apps, the theme need to be copied to ~/.local/share
@@ -18,7 +30,7 @@ To be used with flatpak apps, the theme need to be copied to ~/.local/share
 and https://github.com/flatpak/flatpak/issues/5040).
 
 ```
-flatpak override -u --filesystem=xdg-data/themes:ro --filesystem=xdg-data/icons:ro
+flatpak override -u --filesystem=xdg-data/themes:ro --filesystem=xdg-data/icons:ro --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
 mkdir -p ~/.local/share/themes
 rsync -a --del /usr/share/themes/Yaru818/ ~/.local/share/themes/Yaru818
 rsync -a --del /usr/share/themes/Yaru818-dark/ ~/.local/share/themes/Yaru818-dark

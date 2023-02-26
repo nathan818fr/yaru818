@@ -117,6 +117,7 @@ $workspace_btn_border_size: 1px;
     height: $workspace_btn_size;
     border-radius: 9999px;
     border: $workspace_btn_border_size solid $selected_fg_color;
+    transition-duration: 200;
   }
 
   &:outlined > *, &:outlined:hover > * {

@@ -2,6 +2,9 @@
 set -Eeuo pipefail
 shopt -s inherit_errexit
 
+# flatpak install --user --arch=x86_64 org.freedesktop.Sdk/x86_64/21.08 org.freedesktop.Platform/x86_64/21.08
+# flatpak install --user --arch=aarch64 remote org.freedesktop.Sdk/aarch64/21.08 org.freedesktop.Platform/aarch64/21.08
+
 function main() {
   # shellcheck source=./.env.sh
   . "$(dirname "$(realpath -m "$0")")/.env.sh"
@@ -85,7 +88,7 @@ EOF
     themes/Yaru818-dark/gtk-3.0
 
   # Build flatpak and export a single bundle
-  local archs=('x86_64')
+  local archs=('x86_64' 'aarch64')
 
   mkdir -p -- "$packages_dir"
   pushd "$tmp_dir" >/dev/null

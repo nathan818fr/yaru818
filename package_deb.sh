@@ -37,7 +37,7 @@ EOF
 
   # Create package
   mkdir -p -- "$packages_dir"
-  dpkg-deb --build --root-owner-group -- "$deb_dir" "${packages_dir}/Yaru818_${project_version}_all.deb"
+  dpkg-deb --build --root-owner-group -- "$deb_dir" "${packages_dir}/yaru818-theme_${project_version}_all.deb"
 
   #
   echo "Done!"

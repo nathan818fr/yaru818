@@ -41,6 +41,10 @@ function main() {
   inject_scss_patch "${src_dir}/gtk3-patch.scss" "${local_dir}/gtk/src/default/gtk-3.0/gtk"*".scss"
   inject_scss_patch "${src_dir}/gtk4-patch.scss" "${local_dir}/gtk/src/default/gtk-4.0/gtk"*".scss"
 
+  # - gtksourceview
+  cp -Ta -- "${src_dir}/gtksourceview/dark.xml.in" "${local_dir}/gtksourceview/gtksourceview/dark.xml.in"
+  cp -Ta -- "${src_dir}/gtksourceview/dark-5.xml.in" "${local_dir}/gtksourceview/gtksourceview-5/dark.xml.in"
+
   #
   echo 'Done!'
 }

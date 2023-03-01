@@ -15,11 +15,12 @@ sudo apt install ./humanity-icon-theme_VERSION.deb
 
 ### Distribution packages
 
-- **Debian package (.deb)**\
-  Download the debian package from [releases] and install-it.
-  ```sh
-  sudo apt install ./Yaru818_VERSION.deb
-  ```
+**• Debian package (.deb)**\
+Download the debian package from [releases] and install-it.
+
+```sh
+sudo apt install ./yaru818-theme_VERSION.deb
+```
 
 ### Flatpak
 
@@ -33,7 +34,7 @@ It is also recommended to allow flatpak to access your gtk configurations (it
 will better follow your settings):
 
 ```sh
-flatpak override -u --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
+flatpak override --user --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
 ```
 
 ## Configuration
@@ -54,7 +55,9 @@ flatpak override -u --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/g
 
 ### Cinnamon configuration
 
-TODO
+- Font Selection:
+    - Default font: Sans Regular 9
+    - Window title font: Sans Regular 9
 
 ## Build
 

@@ -31,9 +31,40 @@ EOF
   mkdir -p -- "${deb_dir}/usr/share"
   cp -Ta -- "${build_dir}/_out/share" "${deb_dir}/usr/share"
 
+  # - Move themes and icons to /opt to allow "simple" flatpak compatibility
+  local files file src dst
+  files=(
+    gnome-shell/theme/Yaru818
+    gnome-shell/theme/Yaru818-dark
+    gtksourceview-2.0/styles/Yaru818-dark.xml
+    gtksourceview-2.0/styles/Yaru818.xml
+    gtksourceview-3.0/styles/Yaru818-dark.xml
+    gtksourceview-3.0/styles/Yaru818.xml
+    gtksourceview-4/styles/Yaru818-dark.xml
+    gtksourceview-4/styles/Yaru818.xml
+    gtksourceview-5/styles/Yaru818-dark.xml
+    gtksourceview-5/styles/Yaru818.xml
+    icons/Yaru818
+    icons/Yaru818-dark
+    sounds/Yaru818
+    themes/Yaru818
+    themes/Yaru818-dark
+  )
+  mkdir -p -- "${deb_dir}/opt/yaru818-theme"
+  for file in "${files[@]}"; do
+    src="${deb_dir}/usr/share/${file}"
+    dst="${deb_dir}/opt/yaru818-theme/${file}"
+    mkdir -p -- "$(dirname "$dst")"
+    mv -T -- "$src" "$dst"
+    ln -s -- "/opt/yaru818-theme/${file}" "$src"
+  done
+
   # - Ensure correct files permissions
   find "${deb_dir}" -type d -exec chmod 0755 {} \;
   find "${deb_dir}" -type f -exec chmod 0644 {} \;
+
+  # - Copy scripts
+  cp -- "${src_dir}/configure-flatpak.sh" "${deb_dir}/opt/yaru818-theme/configure-flatpak"
 
   # Create package
   mkdir -p -- "$packages_dir"

@@ -76,7 +76,6 @@ flatpak override --user --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-conf
 
 # 5. Optional: Create packages
 ./package_deb.sh
-./package_flatpak.sh
 ```
 
 [releases]: https://github.com/nathan818fr/yaru818/releases

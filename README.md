@@ -22,21 +22,6 @@ Download the debian package from [releases] and install-it.
 sudo apt install ./yaru818-theme_VERSION.deb
 ```
 
-### Flatpak
-
-Download the flatpak bundle from [releases] and install-it.
-
-```sh
-sudo flatpak install org.gtk.Gtk3theme.Yaru818_VERSION.flatpak
-```
-
-It is also recommended to allow flatpak to access your gtk configurations (it
-will better follow your settings):
-
-```sh
-flatpak override --user --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-config/gtk-3.0:ro
-```
-
 ## Configuration
 
 1. Select `Yaru818-dark` in the theme settings of your desktop-manager.\
@@ -52,6 +37,18 @@ flatpak override --user --filesystem=xdg-config/gtk-2.0:ro --filesystem=xdg-conf
    ```
    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
    ```
+
+### Flatpak
+
+The package is designed to support Flatpak easily (despite
+https://github.com/flatpak/flatpak/issues/4896 /
+https://github.com/flatpak/flatpak/issues/5040).
+
+To enable Flatpak support, run the following command (as user, not as root!):
+
+```sh
+/opt/yaru818-theme/configure-flatpak
+```
 
 ### Cinnamon configuration
 

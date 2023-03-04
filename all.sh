@@ -7,5 +7,4 @@ set -x
 ./patch.sh
 ./build.sh
 ./package_deb.sh
-./package_flatpak.sh
 exit 0

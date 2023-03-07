@@ -26,6 +26,16 @@ Maintainer: Nathan Poirier <nathan@poirier.io>
 Recommends: humanity-icon-theme
 Description: Yaru818 theme
 EOF
+  cat <<EOF >"${deb_dir}/DEBIAN/conffiles"
+/etc/apparmor.d/abstractions/base.d/yaru818-theme
+EOF
+  cat <<'EOF' >"${deb_dir}/DEBIAN/postinst"
+#!/bin/sh
+set -e
+if [ "$1" = "configure" ]; then
+    apparmor_parser -r -T -W /etc/apparmor.d/ || true
+fi
+EOF
 
   # - Copy resources
   mkdir -p -- "${deb_dir}/usr/share"
@@ -59,9 +69,24 @@ EOF
     ln -s -- "/opt/yaru818-theme/${file}" "$src"
   done
 
+  # - Add AppArmor profile
+  local apparmor_base_dir="${deb_dir}/etc/apparmor.d/abstractions/base.d"
+  mkdir -p -- "$apparmor_base_dir"
+  cat <<EOF >"${apparmor_base_dir}/yaru818-theme"
+#########################################
+# Yaru818 theme abstraction
+#
+# AppArmor profiles often allow access to /usr/share
+# But it will fail because we are using symbolic links to /opt/yaru818-theme
+#########################################
+
+/opt/yaru818-theme/** r,
+EOF
+
   # - Ensure correct files permissions
   find "${deb_dir}" -type d -exec chmod 0755 {} \;
   find "${deb_dir}" -type f -exec chmod 0644 {} \;
+  chmod 755 "${deb_dir}/DEBIAN/postinst"
 
   # - Copy scripts
   cp -- "${src_dir}/configure-flatpak.sh" "${deb_dir}/opt/yaru818-theme/configure-flatpak"

@@ -3,11 +3,12 @@
  * ====================================================== */
 
 /**
- * Remove the panels borders
+ * Darken panels background and remove borders
  */
 
 .panel {
   &-top, &-bottom, &-left, &-right {
+    @if ($variant=='dark') { background-color: transparentize(#131313, 0.01); }
     box-shadow: none;
   }
 }
@@ -116,16 +117,16 @@ $workspace_btn_border_size: 1px;
     width: $workspace_btn_size;
     height: $workspace_btn_size;
     border-radius: 9999px;
-    border: $workspace_btn_border_size solid $selected_fg_color;
+    border: $workspace_btn_border_size solid $fg_color;
     transition-duration: 200;
   }
 
   &:outlined > *, &:outlined:hover > * {
-    background-color: $selected_fg_color;
+    background-color: $fg_color;
   }
 
   &:hover, &:outlined:hover {
-    background-color: $noaccent_dark_bg_color;
+    background-color: $noaccent_selected_bg_color;
   }
 }
 

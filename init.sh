@@ -13,9 +13,7 @@ function main() {
 
     # cinnamon-shell
     'cinnamon-shell/*'
-    'cinnamon-shell/src/*'
-    'cinnamon-shell/src/default/**'
-    'cinnamon-shell/src/dark/**'
+    'cinnamon-shell/src/**'
 
     # common
     'common/**'

@@ -12,9 +12,7 @@ function main() {
 
   # Update accent color
   # - cinnamon-shell
-  sed -i -- "s/^\$accent_bg_color:.*/\$accent_bg_color: ${accent_color};/" \
-    "${local_dir}/cinnamon-shell/src/default/_palette.scss" \
-    "${local_dir}/cinnamon-shell/src/dark/_palette.scss"
+  sed -i -- "s/^\$accent_bg_color:.*/\$accent_bg_color: ${accent_color};/" "${local_dir}/cinnamon-shell/src/sass/_palette.scss"
   find "${local_dir}/cinnamon-shell/src" -name '*.svg' -exec sed -i '
     s/#eb6637/#0069D1/g;
     s/#e95420/#0069D1/g;
@@ -24,8 +22,7 @@ function main() {
     ' {} \;
 
   # - gtk
-  cp -- "${src_dir}/accent-colors.scss.in" "${local_dir}/common/accent-colors.scss.in"
-  sed -i -- "s/^    \$color:.*/    \$color: ${accent_color};/" "${local_dir}/common/accent-colors.scss.in"
+  sed -i -- "s/^    \$color:.*/    \$color: ${accent_color};@return \$color;/" "${local_dir}/common/accent-colors.scss.in"
   sed -i -- 's/^  is_accent = .*/  is_accent = true/' "${local_dir}/gtk/src/meson.build"
 
   # Patch
@@ -35,7 +32,7 @@ function main() {
   sed -i -- "s/args.theme_name,/args.theme_name.replace('Yaru', 'Yaru818'),/" "${local_dir}/icons/src/generate-index-theme.py"
 
   # - cinnamon-shell
-  inject_scss_patch "${src_dir}/cinnamon-patch.scss" "${local_dir}/cinnamon-shell/src/"*"/cinnamon.scss"
+  inject_scss_patch "${src_dir}/cinnamon-patch.scss" "${local_dir}/cinnamon-shell/src/cinnamon-shell.scss.in"
 
   # - gtk
   inject_scss_patch "${src_dir}/gtk3-patch.scss" "${local_dir}/gtk/src/default/gtk-3.0/gtk"*".scss"

@@ -60,19 +60,19 @@ To enable Flatpak support, run the following command (as user, not as root!):
 
 ```sh
 # 1. Copy relevant upstream files to the local directory
-./init.sh
+./make.sh init
 
 # 2. Apply patches to the local directory
-./patch.sh
+./make.sh patch
 
 # 3. Run meson and ninja to build the local directory
-./build.sh
+./make.sh build
 
-# 4. Optional: Install locally
-./install.sh
+# Optional: Install locally
+# ./make.sh install
 
-# 5. Optional: Create packages
-./package_deb.sh
+# Optional: Create packages
+# ./make.sh package-deb
 ```
 
 [releases]: https://github.com/nathan818fr/yaru818/releases
